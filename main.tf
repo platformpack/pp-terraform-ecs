@@ -349,6 +349,8 @@ module "db_default" {
 
   allocated_storage = 20
 
+  password = "strong password"
+
   # NOTE: Do NOT use 'user' as the value for 'username' as it throws:
   # "Error creating DB Instance: InvalidParameterValue: MasterUsername
   # user cannot be used as it is a reserved word used by the engine"
