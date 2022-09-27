@@ -1,5 +1,5 @@
 locals {
-  use_existing_vpc = try(var.vpc.id, false)
+  use_existing_vpc = try(var.vpc.id, false) != false ? true : false
 
   #ToDo: Calculate the CIDR and Subnets
   cidr = "10.99.0.0/18"
