@@ -2,6 +2,25 @@
 # ECS Module
 ################################################################################
 
+locals {
+  region = "us-east-1"
+  name   = "ecs-ex-${replace(basename(path.cwd), "_", "-")}"
+
+  user_data = <<-EOT
+    #!/bin/bash
+    cat <<'EOF' >> /etc/ecs/ecs.config
+    ECS_CLUSTER=${local.name}
+    ECS_LOGLEVEL=debug
+    EOF
+  EOT
+
+  tags = {
+    Name       = local.name
+    Example    = local.name
+    Repository = "https://github.com/terraform-aws-modules/terraform-aws-ecs"
+  }
+}
+
 module "ecs" {
   source  = "terraform-aws-modules/ecs/aws"
   version = "4.1.1"
@@ -66,17 +85,17 @@ module "ecs" {
   tags = local.tags
 }
 
-module "hello_world" {
-  source = "./service-hello-world"
+# module "hello_world" {
+#   source = "./service-hello-world"
 
-  cluster_id = module.ecs.cluster_id
-}
+#   cluster_id = module.ecs.cluster_id
+# }
 
-module "ecs_disabled" {
-  source = "../.."
+# module "ecs_disabled" {
+#   source = "../.."
 
-  create = false
-}
+#   create = false
+# }
 
 ################################################################################
 # Supporting Resources
