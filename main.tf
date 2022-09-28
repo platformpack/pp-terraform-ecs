@@ -13,7 +13,7 @@ locals {
   EOT
 
   tags = {
-    Name       = local.name
+    Name       = local.resource_name
     Repository = "https://github.com/platformpack/pp-terraform-ecs"
   }
 }

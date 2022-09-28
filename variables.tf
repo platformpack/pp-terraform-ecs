@@ -1,6 +1,7 @@
 variable "vpc" {
-  type = map(any)
+  description = "VPC map to provide ID and Name"
+  type        = map(any)
   default = {
-    "none" = "none"
+    id = "none"
   }
 }

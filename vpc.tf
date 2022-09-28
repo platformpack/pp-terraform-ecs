@@ -1,5 +1,7 @@
 locals {
-  use_existing_vpc = try(var.vpc.id, false) != false ? true : false
+  use_existing_vpc = try(regex("^vpc-.*$", var.vpc.id), false) != false ? true : false
+
+  resource_name = join("-", [local.organization_name, local.environment_name, "vpc"])
 
   #ToDo: Calculate the CIDR and Subnets
   cidr = "10.99.0.0/18"
@@ -7,6 +9,7 @@ locals {
   azs             = ["${local.region}a", "${local.region}b", "${local.region}c"]
   public_subnets  = ["10.99.0.0/24", "10.99.1.0/24", "10.99.2.0/24"]
   private_subnets = ["10.99.3.0/24", "10.99.4.0/24", "10.99.5.0/24"]
+
 }
 
 module "vpc" {
@@ -14,7 +17,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
-  name = local.name
+  name = local.resource_name
   cidr = local.cidr
 
   azs             = local.azs
