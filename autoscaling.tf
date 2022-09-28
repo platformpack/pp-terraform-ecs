@@ -1,5 +1,5 @@
 locals {
-  asg_name = join("-", [local.default_resource_name, "ecs-asg"])
+  asg_name = join("-", [local.default_resource_name, "asg"])
 
   user_data = <<-EOT
     #!/bin/bash
