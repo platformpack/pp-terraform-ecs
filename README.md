@@ -7,7 +7,7 @@
 
 ## Providers
 
-No providers.
+AWS
 
 ## Modules
 
