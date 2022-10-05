@@ -39,3 +39,5 @@ resource "aws_efs_file_system" "sharedstore" {
   provisioned_throughput_in_mibps = var.efs["provisioned_throughput_in_mibps"]
   throughput_mode                 = var.efs["throughput_mode"]
 }
+
+# The last test for today
