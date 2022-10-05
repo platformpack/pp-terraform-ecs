@@ -15,3 +15,12 @@ resource "aws_security_group_rule" "example" {
   cidr_blocks       = "0.0.0.0/0"
   security_group_id = "sg-123456"
 }
+
+# Create a new host with instance type of c5.18xlarge with Auto Placement
+# and Host Recovery enabled.
+resource "aws_ec2_host" "test" {
+  instance_type     = "c5.18xlarge"
+  availability_zone = "us-west-2a"
+  host_recovery     = "on"
+  auto_placement    = "on"
+}
