@@ -1,3 +1,5 @@
+
+
 terraform {
   required_providers {
     spacelift = {
@@ -7,7 +9,7 @@ terraform {
 }
 
 provider "spacelift" {
-  alias = "platformpack"
+  alias = "my-spacelift"
 }
 
 module "example-stack" {
@@ -16,6 +18,6 @@ module "example-stack" {
   new_stack_name = "example-stack"
 
   providers = {
-    spacelift = spacelift.platformpack
+    spacelift = spacelift.my-spacelift
   }
 }
